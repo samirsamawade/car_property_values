@@ -10,6 +10,10 @@ import { map } from "rxjs/operators";
 
 import { plainToClass } from "class-transformer";
 
+export function Serialize(dto: any){
+  return UseInterceptors( new SerializeInterceptor(dto) );
+}
+
 export class SerializeInterceptor implements NestInterceptor {
 
   constructor(private dto: any){}
@@ -24,7 +28,6 @@ export class SerializeInterceptor implements NestInterceptor {
       })
     )
 
-    throw new Error("Method not implemented.");
   }
 
 }

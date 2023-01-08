@@ -18,7 +18,7 @@ GET http://localhost:3000/auth?email=test@example.com
 DELETE http://localhost:3000/auth/3
 
 ###Update a user
-PATCH http://localhost:3000/auth/22
+PATCH http://localhost:3000/auth/10
 content-type: application/json
 
 {

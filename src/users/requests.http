@@ -15,10 +15,10 @@ GET http://localhost:3000/auth/1
 GET http://localhost:3000/auth?email=test@example.com
 
 ### Delete a user with the given id 
-DELETE http://localhost:3000/auth/3
+DELETE http://localhost:3000/auth/9
 
 ###Update a user
-PATCH http://localhost:3000/auth/10
+PATCH http://localhost:3000/auth/12
 content-type: application/json
 
 {

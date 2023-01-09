@@ -1,10 +1,18 @@
 ### create new user
-
 POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
   "email": "you@example.com",
+  "password": "tefdfdfst"
+}
+
+### Signin an existing user
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "me@example.com",
   "password": "tefdfdfst"
 }
 

@@ -3,11 +3,11 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-  "email": "you@example.com",
-  "password": "tefdfdfst"
+  "email": "you@test.com",
+  "password": "12345"
 }
 
-### Signin an existing user
+### Signin a an existing user
 POST http://localhost:3000/auth/signin
 content-type: application/json
 
@@ -32,3 +32,4 @@ content-type: application/json
 {
   "password": "123456"
 }
+

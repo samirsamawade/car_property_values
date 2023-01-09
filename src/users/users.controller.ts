@@ -27,8 +27,12 @@ export class UsersController {
     ) { }
 
     @Get('/whoami')
-    whoAmI(@Session() session: any) {
-      return this.userService.findOne(session.userId);
+    async whoAmI(@Session() session: any) {
+      const user = await this.userService.findOne(session.userId);
+      if(!user){
+        throw new NotFoundException('Please select a valid user!')
+      }
+      return user;
     }
 
     @Post('/signout')

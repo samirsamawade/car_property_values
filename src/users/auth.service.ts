@@ -1,7 +1,9 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
+import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { UsersService } from './users.service';
+import { promisify } from 'util';
 
-
+const scrypt = promisify(_scrypt);
 
 @Injectable()
 export class AuthService {
@@ -13,7 +15,11 @@ export class AuthService {
     if (users.length) {
       throw new BadRequestException('Email already in use');
 
-      
+      const salt = randomBytes(8).toString('hex');
+
+      const hash = (await scrypt(password, salt, 32)) as Buffer;
+
+      const result = salt + '.' + hash.toString('hex');
     }
   }
 

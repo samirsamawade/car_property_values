@@ -12,9 +12,8 @@ export class CurrentUserInterceptor implements NestInterceptor{
 constructor(private usersService: UsersService){}
 
     intercept(context: ExecutionContext, handler: CallHandler<any>): Observable<any> | Promise<Observable<any>> {
-        throw new Error('Method not implemented.');
         const request = context.switchToHttp().getRequest();
-        const {userId } = request.session || {};
+        const {userId } = request.session || {}
 
         if(userId){
             const user = this.usersService.findOne(userId);

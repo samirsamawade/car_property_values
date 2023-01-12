@@ -8,7 +8,8 @@ import {
   Param, 
   Query, 
   NotFoundException,
-  Session
+  Session,
+  UseInterceptors
  } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
@@ -17,9 +18,12 @@ import { Serialize } from './../interceptors/serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
+import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
+import { User } from './user.entity';
 
 @Controller('auth')
 @Serialize(UserDto)
+@UseInterceptors(CurrentUserInterceptor)
 export class UsersController {
 
   constructor(
@@ -37,8 +41,11 @@ export class UsersController {
     // }
 
     @Get('/whoami')
-    whoAmI(@CurrentUser() user: string){
-      return user;
+    whoAmI(@CurrentUser() user: User){
+      if(!user){
+            throw new NotFoundException('Please select a valid user!')
+          }
+          return user;
     }
 
     @Post('/signout')

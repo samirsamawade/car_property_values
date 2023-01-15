@@ -50,26 +50,23 @@ it('create a new user with a salted and hashed password', async ()=>{
 });
 
 it('throws an error if user signs up with email that is in use', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([{ id: 1, email: 'a', password: '1' } as User]);
+    await service.signup('asdf@asdf.com', 'asdf');
     await expect(service.signup('asdf@asdf.com', 'asdf')).rejects.toThrow(
       BadRequestException,
     );
   });
 
   it('throws if signin is called with an unused email', async () => {
+    await service.signup('asdf@asdf.com', '12345')
     await expect(
-      service.signin('asdflkj@asdlfkj.com', 'passdflkj'),
+      service.signin('asdfg@asdf.com', '12345'),
     ).rejects.toThrow(NotFoundException);
   });
 
   it('throws if an invalid password is provided', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        { email: 'asdf@asdf.com', password: 'laskdjf' } as User,
-      ]);
+    await service.signup('asdf@asdf.com', '12345');
     await expect(
-      service.signin('laskdjf@alskdfj.com', 'passowrd'),
+      service.signin('asdf@asdf.com', '1234'),
     ).rejects.toThrow(BadRequestException);
   });
 

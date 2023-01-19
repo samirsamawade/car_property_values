@@ -19,7 +19,7 @@ import { UserDto } from './dtos/user.dto';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { User } from './user.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -30,15 +30,7 @@ export class UsersController {
     private authService: AuthService
     ) { }
 
-    // @Get('/whoami')
-    // async whoAmI(@Session() session: any) {
-    //   const user = await this.userService.findOne(session.userId);
-    //   if(!user){
-    //     throw new NotFoundException('Please select a valid user!')
-    //   }
-    //   return user;
-    // }
-
+ 
     @Get('/whoami')
     @UseGuards(AuthGuard)
     whoAmI(@CurrentUser() user: User){

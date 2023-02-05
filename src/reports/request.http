@@ -4,11 +4,11 @@ content-type: application/json
 {
   "make": "Ford",                              
   "model": "Mustang",
-  "year": 2002,
-  "mileage": 4000,
+  "year": 2006,
+  "mileage": 200,
   "lng": 45,
   "lat": 45,
-  "price": 100000
+  "price": 120000
 }
 
 ### Approve an existing report

@@ -45,6 +45,16 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Migration
+
+```bash
+# generate migrations
+$ npm run typeorm migration:generate src/migrations/initial-schema
+
+# run migrations
+$ npm run typeorm migration:run
+```
+
 ## Test
 
 ```bash
